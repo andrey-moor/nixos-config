@@ -38,6 +38,7 @@ in
   };
 
   catppuccin = {
+    enable = true;
     cursors = {
       enable = true;
       accent = "dark"; # This corresponds to mochaDark
@@ -198,6 +199,15 @@ in
 
     jujutsu = {
       enable = true;
+    };
+
+    vscode = {
+      enable = true;
+      # package = pkgs.code-cursor;  # Use Cursor AI instead of VS Code
+      # Set Catppuccin as your default theme
+      userSettings = {
+        "workbench.colorTheme" = "Catppuccin Mocha";  # Or any other flavor: Latte, Frappé, Macchiato
+      };
     };
   };
 

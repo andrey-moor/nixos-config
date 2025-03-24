@@ -88,10 +88,10 @@ let user = "andreym";
   # https://github.com/NixOS/nixpkgs/issues/34603
   environment.variables = {
     GDK_SCALE = "2.0";
-    GDK_DPI_SCALE = "0.4";
+    GDK_DPI_SCALE = "0.2";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2.0";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    XCURSOR_SIZE = "64";
+    XCURSOR_SIZE = "32";
   };
 
   # Manages keys and such
@@ -115,7 +115,7 @@ let user = "andreym";
       enable = true;
 
       dpi = 220;
-      upscaleDefaultCursor = true;
+      # upscaleDefaultCursor = true;
 
       desktopManager = {
         xterm.enable = false;
