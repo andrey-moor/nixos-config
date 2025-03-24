@@ -1,0 +1,54 @@
+{
+  "mainBar": {
+    "layer": "top", 
+    "position": "top", 
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": [],
+    "modules-right": ["network", "cpu", "memory", "tray", "clock"],
+    "hyprland/workspaces": {
+         "disable-scroll": true,
+         "sort-by-name": true,
+         "format": " {icon} ",
+         "format-icons": {
+             "default": ""
+         }
+     },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "timezone": "America/Los_Angeles",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%d/%m/%Y}",
+        "format": " {:%H:%M}"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-charging": "",
+        "format-plugged": "",
+        "format-alt": "{icon}",
+        "format-icons": ["", "",  "", "", "", "", "", "", "", "", "", ""]
+    },
+    "network": {
+      "tooltip": false,
+      "format-wifi": " {essid} {ipaddr}",
+      "format-ethernet": "󰈀 {ifname}"
+    },
+    "cpu": {
+      "interval": 3,
+      "tooltip": false,
+      "format": " {avg_frequency}GHz",
+      "on-click": "alacritty -e btop"	
+    },
+    "memory": {
+      "tooltip": false,
+      "format": " {}%"
+    }
+  }
+}
+

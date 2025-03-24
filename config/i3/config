@@ -1,0 +1,253 @@
+# i3 config file (v4)
+set $mod Mod4
+
+#----------------------------------------------------------------------
+# Look & Feel
+#----------------------------------------------------------------------
+# Font for window titles (required configuration)
+font pango:monospace 8
+
+# Window visuals
+new_window pixel 2
+new_float pixel 2
+floating_minimum_size 400 x 300
+floating_maximum_size -1 x -1
+focus_follows_mouse no
+
+# Catppuccin Mocha colors
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $yellow    #f9e2af
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
+# Window colors
+# class                 border    backgr.    text    indicator   child_border
+client.focused          $mauve    $mauve     $base   $red        $mauve
+client.focused_inactive $surface1 $surface1  $text   $surface1   $surface1
+client.unfocused        $surface1 $surface1  $text   $surface1   $surface1
+client.urgent           $red      $red       $base   $red        $red
+client.placeholder      $overlay0 $overlay0  $text   $overlay0   $overlay0
+client.background       $base
+
+#----------------------------------------------------------------------
+# Startup
+#----------------------------------------------------------------------
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# No background
+# exec --no-startup-id xsetroot -solid $base
+# exec --no-startup-id feh --bg-fill --no-fehbg "$base"
+
+# Keyboard layout settings
+# exec --no-startup-id setxkbmap -layout us -variant intl
+
+# Input methods
+# exec --no-startup-id fcitx5 -d
+
+# Set wallpaper
+exec --no-startup-id feh --bg-fill --reandomize $HOME/.wallpapers/*
+
+# Set cursor theme
+exec_always --no-startup-id xsetroot -cursor_name left_ptr
+
+#----------------------------------------------------------------------
+# Keybindings
+#----------------------------------------------------------------------
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Start a terminal
+bindsym $mod+Return exec ghostty --gtk-single-instance=true
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+bindsym $mod+w kill
+
+# Application launcher
+# bindsym $mod+d exec wofi --show=drun
+bindsym $mod+o exec rofi -show run
+
+# Change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# Alternative focus keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# Alternative move keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split horizontal/vertical
+# Use b for horizontal split instead of h (which conflicts with focus left)
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
+
+# Layouts
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+# Floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Focus parent
+bindsym $mod+a focus parent
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Reload/restart
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Exit i3 - using a different keybinding to avoid conflict
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+
+#----------------------------------------------------------------------
+# Resize Mode
+#----------------------------------------------------------------------
+set $mode_resize Resize / Move
+
+mode "$mode_resize" {
+        # Focus parent and child
+        bindsym a focus parent
+        bindsym $mod+a focus parent
+        bindsym c focus child
+        bindsym $mod+c focus child
+
+        # Move containers
+        bindsym 1 move container to workspace number $ws1; workspace number $ws1
+        bindsym 2 move container to workspace number $ws2; workspace number $ws2
+        bindsym 3 move container to workspace number $ws3; workspace number $ws3
+        bindsym 4 move container to workspace number $ws4; workspace number $ws4
+        bindsym 5 move container to workspace number $ws5; workspace number $ws5
+        bindsym 6 move container to workspace number $ws6; workspace number $ws6
+        bindsym 7 move container to workspace number $ws7; workspace number $ws7
+        bindsym 8 move container to workspace number $ws8; workspace number $ws8
+        bindsym 9 move container to workspace number $ws9; workspace number $ws9
+        bindsym 0 move container to workspace number $ws10; workspace number $ws10
+
+        # Resize window
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # Back to normal
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "$mode_resize"
+
+#----------------------------------------------------------------------
+# System Mode
+#----------------------------------------------------------------------
+set $mode_system System (e) logout, (r) reboot, (Ctrl+s) shutdown
+
+mode "$mode_system" {
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # Back to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+BackSpace mode "$mode_system"
+
+# Start i3bar to display a workspace bar
+bar {
+    status_command i3status
+    colors {
+        background $base
+        statusline $text
+        separator  $surface1
+
+        # State             Border     BG         Text
+        focused_workspace   $mauve     $mauve     $base
+        active_workspace    $surface1  $surface1  $text
+        inactive_workspace  $surface1  $surface1  $text
+        urgent_workspace    $red       $red       $base
+        binding_mode        $peach     $peach     $base
+    }
+}

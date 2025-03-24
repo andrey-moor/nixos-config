@@ -1,0 +1,7 @@
+\#*
+*.swp
+result
+.DS_Store
+
+# Ignore iso directory used to download NixOS minimal image
+iso
