@@ -1,11 +1,11 @@
-{ user, configDir, ... }:
+{ config, user, configDir, ... }:
 
 let
   home           = builtins.getEnv "HOME";
   xdg_configHome = "${home}/.config";
   xdg_dataHome   = "${home}/.local/share";
   xdg_wallpaperHome = "${home}/.wallpapers";
-  xdg_stateHome  = "${home}/.local/state"; in
+  xdg_CtateHome  = "${home}/.local/state"; in
 {
 
   "${xdg_configHome}/i3/config".source = ../../config/i3/config;
@@ -18,7 +18,8 @@ let
   "${xdg_configHome}/rofi/config.rasi".source = "${configDir}/rofi/config.rasi";
   "${xdg_configHome}/rofi/catppuccin-mocha.rasi".source = "${configDir}/rofi/catppuccin-mocha.rasi";
 
-  "${xdg_configHome}/nvim".source = "${configDir}/nvim";
+  # "${xdg_configHome}/nvim".source = "${configDir}/nvim";
+  # "${xdg_configHome}/nvim".source = config.lib.file.mkOutOfStoreSymlink "${nvimConfigDir}";
 
   "${xdg_configHome}/fish/config.fish".source = "${configDir}/fish/config.fish";
   "${xdg_configHome}/fish/themes/catppuccin mocha.theme".source = "${configDir}/fish/themes/catppuccin mocha.theme";

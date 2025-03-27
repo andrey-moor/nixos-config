@@ -7,6 +7,7 @@ let
   shared-programs = import ../shared/home-manager.nix { inherit config configDir pkgs lib; };
   shared-files = import ../shared/files.nix { inherit config configDir pkgs; };
 
+  dotfiles = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/config";
   # These files are generated when secrets are decrypted at build time
   gpgKeys = [
     # "/home/${user}/.ssh/pgp_github.key"
@@ -23,7 +24,7 @@ in
     username = "${user}";
     homeDirectory = "/home/${user}";
     packages = pkgs.callPackage ./packages.nix { };
-    file = shared-files // import ./files.nix { inherit user configDir pkgs; };
+    file = shared-files // import ./files.nix { inherit config user configDir pkgs ; };
     stateVersion = "21.05";
     pointerCursor = {
       size = 32; # Matches your XCURSOR_SIZE
@@ -31,6 +32,12 @@ in
       x11.enable = true;
     };
   };
+
+  xdg.configFile = {
+    nvim.source = "${dotfiles}/nvim";
+  };
+
+  # https://www.foodogsquared.one/posts/2023-03-05-combining-traditional-dotfiles-and-nixos-configurations-with-nix-flakes/#_adding_the_dotfiles_in_the_flake
 
   xresources.properties = {
     # "Xcursor.theme" = "Catppuccin-Mocha-Dark-Cursors";
@@ -52,6 +59,9 @@ in
       # Optional: Enable GNOME Shell theming
       # gnomeShellTheme = true;
     };
+    nvim = {
+    	enable = false;
+	};
   };
 
   services = {

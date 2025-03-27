@@ -121,7 +121,10 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.${user} = import ./modules/nixos/home-manager.nix;
-                extraSpecialArgs = { inherit configDir; catppuccin = inputs.catppuccin; };
+                extraSpecialArgs = { 
+                  inherit configDir; 
+                  catppuccin = inputs.catppuccin; 
+                };
               };
             }
             ./hosts/nixos

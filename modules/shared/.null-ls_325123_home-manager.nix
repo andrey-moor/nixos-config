@@ -46,15 +46,7 @@ let name = "Andrey Moor";
       # Add pkgs.nightly.nixd # nixlanguage servers and formatters as needed
       pkgs.nixd
       pkgs.lua-language-server # lua
-      pkgs.copilot-language-server
-      pkgs.prettierd
-      pkgs.stylua
-      pkgs.selene
-      pkgs.nixd
-      pkgs.black
-      pkgs.ripgrep
-      pkgs.nodePackages."@astrojs/language-server"
-      pkgs.rust-analyzer
+      # pkgs.copilot-chat
     ];
   };
 

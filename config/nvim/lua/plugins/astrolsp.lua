@@ -37,7 +37,12 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      -- "pyright"
+      "lua_ls",
+      "astro",
+      "svelte",
+      "rust_analyzer",
+      "nixd"
+      "copilot_ls"
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
