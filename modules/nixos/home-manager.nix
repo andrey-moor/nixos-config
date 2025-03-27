@@ -35,6 +35,7 @@ in
 
   xdg.configFile = {
     nvim.source = "${dotfiles}/nvim";
+    astronvim_v5.source = "${dotfiles}/astronvim_v5";
   };
 
   # https://www.foodogsquared.one/posts/2023-03-05-combining-traditional-dotfiles-and-nixos-configurations-with-nix-flakes/#_adding_the_dotfiles_in_the_flake
@@ -61,54 +62,27 @@ in
     };
     nvim = {
     	enable = false;
-	};
+	  };
+	  vscode = {
+      accent = "mauve";
+      settings = {
+        boldKeywords = true;
+        italicComments = true;
+        italicKeywords = true;
+        colorOverrides = {};
+        customUIColors = {};
+        workbenchMode = "default";
+        bracketMode = "rainbow";
+        extraBordersEnabled = false;
+      };
+    };
   };
 
   services = {
-    # dunst = {
-    #   enable = true;
-    #   package = pkgs.dunst;
-    #   settings = {
-    #     global = {
-    #       monitor = 0;
-    #       follow = "mouse";
-    #       border = 0;
-    #       height = 400;
-    #       width = 320;
-    #       offset = "33x65";
-    #       indicate_hidden = "yes";
-    #       shrink = "no";
-    #       separator_height = 0;
-    #       padding = 32;
-    #       horizontal_padding = 32;
-    #       frame_width = 0;
-    #       sort = "no";
-    #       idle_threshold = 120;
-    #       font = "Noto Sans";
-    #       line_height = 4;
-    #       markup = "full";
-    #       format = "<b>%s</b>\n%b";
-    #       alignment = "left";
-    #       transparency = 10;
-    #       show_age_threshold = 60;
-    #       word_wrap = "yes";
-    #       ignore_newline = "no";
-    #       stack_duplicates = false;
-    #       hide_duplicate_count = "yes";
-    #       show_indicators = "no";
-    #       icon_position = "left";
-    #       icon_theme = "Adwaita-dark";
-    #       sticky_history = "yes";
-    #       history_length = 20;
-    #       history = "ctrl+grave";
-    #       browser = "google-chrome-stable";
-    #       always_run_script = true;
-    #       title = "Dunst";
-    #       class = "Dunst";
-    #       max_icon_size = 64;
-    #     };
-    #   };
-    # };
+    dunst = {
+      enable = true;
+      package = pkgs.dunst;
+    };
 
     gpg-agent = {
       enable = true;
@@ -211,15 +185,16 @@ in
       enable = true;
     };
 
-    vscode = {
-      enable = true;
-      # package = pkgs.code-cursor;  # Use Cursor AI instead of VS Code
-      # Set Catppuccin as your default theme
-      userSettings = {
-        "workbench.colorTheme" = "Catppuccin Mocha";  # Or any other flavor: Latte, Frappé, Macchiato
-      };
-    };
+    # vscode = {
+    #   enable = true;
+    #   package = pkgs.code-cursor;  # Use Cursor AI instead of VS Code
+    #   # Set Catppuccin as your default theme
+    #   userSettings = {
+    #     "workbench.colorTheme" = "Catppuccin Mocha";  # Or any other flavor: Latte, Frappé, Macchiato
+    #   };
+    # };
   };
+
 
   # This installs my GPG signing keys for Github
   systemd.user.services.gpg-import-keys = {

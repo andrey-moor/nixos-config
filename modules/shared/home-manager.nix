@@ -2,7 +2,16 @@
 
 let name = "Andrey Moor";
     user = "andreym";
-    email = "moor.andrey@gmail.com"; in
+    email = "moor.andrey@gmail.com"; 
+    # rustToolchain = pkgs.fenix.complete.withComponents [
+    #   "cargo"
+    #   "clippy"
+    #   "rust-src"
+    #   "rustc"
+    #   "rustfmt"
+    #   "rust-analyzer"
+    # ];
+in
 {
   direnv = {
       enable = true;
@@ -27,16 +36,26 @@ let name = "Andrey Moor";
   neovim = {
     enable = true;
     defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-      astrocore
-      astrolsp
-      astrotheme
-      astroui
+    # plugins = [
+    #   {
+    #     plugin = pkgs.vimPlugins.avante-nvim;
+    #     type = "lua";
+    #     config = ''
+    #             require("avante_lib").load()
+    #             require("avante").setup()
+    #     '';
+    #   }
+    # ];
+    # plugins = with pkgs.vimPlugins; [
+      # lazy-nvim
+      # astrocore
+      # astrolsp
+      # astrotheme
+      # astroui
 
       # (nvim-treesitter.withAllGrammars)
       # Add other plugins here
-    ];
+    # ];
     extraPackages = [
       # Add any tools you need for your Neovim setup
       # For example:
@@ -45,6 +64,8 @@ let name = "Andrey Moor";
       pkgs.tree-sitter
       # Add pkgs.nightly.nixd # nixlanguage servers and formatters as needed
       pkgs.nixd
+      pkgs.deadnix
+      pkgs.statix
       pkgs.lua-language-server # lua
       pkgs.copilot-language-server
       pkgs.prettierd
@@ -55,6 +76,11 @@ let name = "Andrey Moor";
       pkgs.ripgrep
       pkgs.nodePackages."@astrojs/language-server"
       pkgs.rust-analyzer
+
+      pkgs.ruff
+      pkgs.isort
+
+      # rustToolchain
     ];
   };
 

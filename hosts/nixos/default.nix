@@ -323,6 +323,19 @@ let user = "andreym";
     yubikey-personalization
     pcsclite                # PC/SC Lite (smart card daemon)
     pcsctools               # Tools for PC/SC
+
+    # Using standard ghidra
+    # ghidra
+    
+    # Using inline extension approach
+    # (ghidra.withExtensions (p: with p; [
+    #   ret-sync
+    #   kaiju
+    # ]))
+
+    # Using our custom overlay for ghidra with extensions including GhidraMCP
+    # ghidra-with-extensions
+    simple-test-package
   ];
 
   system.stateVersion = "21.05"; # Don't change this

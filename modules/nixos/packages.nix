@@ -38,5 +38,8 @@ shared-packages ++ [
   # System
   glxinfo                    # For checking OpenGL support
 
-  code-cursor
+  claude-code
+
+  # code-cursor
+  # ffmpeg
 ]

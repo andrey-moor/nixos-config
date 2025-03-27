@@ -9,7 +9,7 @@ return {
   { import = "astrocommunity.pack.proto" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
+  -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
   { import = "astrocommunity.editing-support.nvim-treesitter-context" },
   { import = "astrocommunity.quickfix.quicker-nvim" },

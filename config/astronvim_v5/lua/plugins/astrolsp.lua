@@ -40,23 +40,14 @@ return {
       "lua_ls",
       "astro",
       "svelte",
-      "rust_analyzer",
-      "nixd"
+      -- "rust_analyzer",
+      -- "nixd",
+      -- "copilot-language-server"
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-      rust_analyzer = {
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = "dev" },
-              extraArgs = { "--profile", "rust-analyzer" },
-            },
-          },
-        },
-      },
     },
     -- customize how language servers are attached
     handlers = {
@@ -105,11 +96,6 @@ return {
             return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
           end,
         },
-        ["<leader>le"] = { "<cmd>RustLsp expandMacro<cr>", desc = "Expand Macro" },
-      },
-
-      v = {
-        ["<leader>ts"] = { "<cmd>ToggleTermSendVisualLines<CR>", desc = "Send visual selection to terminal" },
       },
     },
     -- A custom `on_attach` function to be run after the default `on_attach` function
