@@ -30,3 +30,7 @@
 - Verify imports and code style from context
 - Never commit secrets or keys
 - Test changes with `nix run .#build` before applying
+- I'm using flakes
+
+## Environment Details
+- Nix version 2.24.13

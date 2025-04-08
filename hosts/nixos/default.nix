@@ -263,6 +263,7 @@ let user = "andreym";
   # Don't require password for users in `wheel` group for these commands
   security.sudo = {
     enable = true;
+    wheelNeedsPassword = false;
     extraRules = [{
       commands = [
        {
@@ -334,8 +335,7 @@ let user = "andreym";
     # ]))
 
     # Using our custom overlay for ghidra with extensions including GhidraMCP
-    # ghidra-with-extensions
-    simple-test-package
+    ghidra
   ];
 
   system.stateVersion = "21.05"; # Don't change this
