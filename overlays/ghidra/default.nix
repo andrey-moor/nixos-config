@@ -1,15 +1,21 @@
-# custom-ghidra-overlay.nix
+# overlays/ghidra/default.nix
 final: prev: {
   ghidra = prev.ghidra // {
     passthru = prev.ghidra.passthru or {} // {
       extensions = prev.lib.makeScope prev.newScope (self: 
-        # Import the original extensions
-        (prev.ghidra.passthru.extensions.unscope) // {
-          # Add your custom extension
+        # Get the original extensions
+        let 
+          originalExtensions = prev.ghidra.passthru.extensions;
+          originalExtensionsSet = builtins.listToAttrs 
+            (map (name: { inherit name; value = originalExtensions.${name}; }) 
+                (builtins.attrNames originalExtensions));
+        in
+        originalExtensionsSet // {
+          # Add your custom extension - note the updated path
           golang-analyzer = self.callPackage ./extensions/golang-analyzer.nix {};
           
-          # You can add multiple extensions
-          # another-extension = self.callPackage ./another-extension.nix {};
+          # You can add more extensions here
+          # another-extension = self.callPackage ./extensions/another-extension.nix {};
         }
       );
     };
