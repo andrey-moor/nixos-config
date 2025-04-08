@@ -1,14 +1,14 @@
 # From your overlays/ghidra/default.nix
 final: prev: {
-  # Import the extension
+  # Import the extensions
   ghidraExtensions = prev.ghidraExtensions or {} // {
-    test = final.callPackage ./extensions/test.nix {};
+    golang-analyzer = final.callPackage ./extensions/golang-analyzer.nix {};
   };
 
-  # Create Ghidra with the extension
+  # Create Ghidra with the extensions
   ghidra = prev.ghidra.override {  # This line replaces the default ghidra
     extensions = (prev.ghidra.extensions or []) ++ [
-      final.ghidraExtensions.test
+      final.ghidraExtensions.golang-analyzer
     ];
   };
 }
