@@ -335,7 +335,12 @@ let user = "andreym";
     # ]))
 
     # Using our custom overlay for ghidra with extensions including GhidraMCP
-    ghidra
+    # ghidra
+
+    (ghidra.withExtensions (ext: with ext; [
+      # findcrypt  # Existing extension
+      golang-analyzer # Your custom extension
+    ]))
   ];
 
   system.stateVersion = "21.05"; # Don't change this
