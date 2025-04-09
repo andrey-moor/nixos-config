@@ -245,7 +245,7 @@ let user = "andreym";
         "lxd"
         "plugdev"
       ];
-      shell = pkgs.fish;
+      shell = pkgs.nushell;
       openssh.authorizedKeys.keys = keys;
       initialPassword = "nixos";
 

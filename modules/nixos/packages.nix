@@ -42,4 +42,6 @@ shared-packages ++ [
 
   # code-cursor
   # ffmpeg
+
+  bat
 ]

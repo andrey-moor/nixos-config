@@ -25,6 +25,7 @@ in
 
   starship = {
     enable = true;
+    enableNushellIntegration = true;
     settings = builtins.fromTOML (builtins.readFile "${configDir}/starship/starship.toml");
   };
 

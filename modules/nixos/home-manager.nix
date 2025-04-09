@@ -34,7 +34,7 @@ in
   };
 
   xdg.configFile = {
-    nvim.source = "${dotfiles}/nvim";
+    nvim.source = "${dotfiles}/astronvim_v5";
     astronvim_v5.source = "${dotfiles}/astronvim_v5";
   };
 
@@ -183,6 +183,22 @@ in
 
     jujutsu = {
       enable = true;
+    };
+
+    atuin = {
+      enable = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+      settings = {
+        show_tabs = false;
+        style = "compact";
+      };
+    };
+
+    nushell = {
+      enable = true;
+      # configFile.source = ./config.nu;
+      # shellAliases = shellAliases;
     };
 
     # vscode = {
