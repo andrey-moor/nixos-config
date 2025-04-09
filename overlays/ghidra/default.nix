@@ -7,6 +7,10 @@ self: super:
       buildGhidraExtension = super.ghidra.passthru.buildGhidraExtension;
     })
     
+    (super.callPackage ./extensions/mcp {
+      buildGhidraExtension = super.ghidra.passthru.buildGhidraExtension;
+    })
+
     # You can also include standard extensions from ghidra-extensions
     extensions.ret-sync
   ]);

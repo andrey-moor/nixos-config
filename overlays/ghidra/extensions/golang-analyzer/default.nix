@@ -5,13 +5,13 @@
 }:
 buildGhidraExtension rec {
   pname = "Ghidra-GolangAnalyzerExtension";
-  version = "1.3.7";
+  version = "1.2.4";
 
   src = fetchFromGitHub {
     owner = "mooncat-greenpy";
     repo = "Ghidra_GolangAnalyzerExtension";
     rev = version;
-    hash = "sha256-pFvwTJy0DhCG/O1HxoDLRY59kNs4hAEIfBLYBkfM3YU=";
+    hash = "sha256-uxozIJ+BLcP1vBnLOCZD9ueY10hd37fON/Miii3zabo=";
   };
 
   meta = {
@@ -19,6 +19,6 @@ buildGhidraExtension rec {
     homepage = "https://github.com/mooncat-greenpy/Ghidra_GolangAnalyzerExtension";
     downloadPage = "https://github.com/mooncat-greenpy/Ghidra_GolangAnalyzerExtension/releases/tag/${version}";
     license = lib.licenses.mit;
-    maintainers = [ ];
+    maintainers = [ lib.maintainers.ivyfanchiang ];
   };
 }
