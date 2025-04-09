@@ -10,7 +10,7 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.completion.copilot-vim-cmp" },
-  { import = "astrocommunity.completion.avante-nvim" },
+  -- { import = "astrocommunity.completion.avante-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
 }

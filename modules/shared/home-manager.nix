@@ -47,16 +47,16 @@ in
     #     '';
     #   }
     # ];
-    # plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
       # lazy-nvim
       # astrocore
       # astrolsp
       # astrotheme
       # astroui
 
-      # (nvim-treesitter.withAllGrammars)
+      (nvim-treesitter.withAllGrammars)
       # Add other plugins here
-    # ];
+    ];
     extraPackages = [
       # Add any tools you need for your Neovim setup
       # For example:

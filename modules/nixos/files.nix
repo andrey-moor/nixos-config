@@ -29,6 +29,9 @@ let
   "${xdg_configHome}/nushell/config.nu".source = "${configDir}/nushell/config.nu";
   "${xdg_configHome}/nushell/catppuccin_mocha.nu".source = "${configDir}/nushell/catppuccin_mocha.nu";
 
+  "${xdg_configHome}/bat/config".source = "${configDir}/bat/config";
+  "${xdg_configHome}/bat/themes/Catppuccin Mocha.tmTheme".source = "${configDir}/bat/themes/Catppuccin Mocha.tmTheme";
+
   # "${xdg_configHome}/rofi/colors.rasi".text = builtins.readFile ./config/rofi/colors.rasi;
   # "${xdg_configHome}/rofi/confirm.rasi".text = builtins.readFile ./config/rofi/confirm.rasi;
   # "${xdg_configHome}/rofi/launcher.rasi".text = builtins.readFile ./config/rofi/launcher.rasi;
