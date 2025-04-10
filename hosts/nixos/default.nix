@@ -108,6 +108,14 @@ let user = "andreym";
     # My shell
     fish.enable = true;
 
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        zlib                # Provides libz.so.1
+        stdenv.cc.cc.lib    # Provides libstdc++.so.6
+        icu                 # Provides libicu/International Components for Unicode
+      ];
+    };
   };
 
   services = {

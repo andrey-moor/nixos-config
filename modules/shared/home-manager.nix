@@ -49,10 +49,10 @@ in
     # ];
     plugins = with pkgs.vimPlugins; [
       # lazy-nvim
-      # astrocore
-      # astrolsp
-      # astrotheme
-      # astroui
+      astrocore
+      astrolsp
+      astrotheme
+      astroui
 
       (nvim-treesitter.withAllGrammars)
       # Add other plugins here
