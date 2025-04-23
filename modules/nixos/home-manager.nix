@@ -1,10 +1,10 @@
-{ config, pkgs, lib, configDir, catppuccin, ... }:
+{ config, pkgs, lib, configDir, catppuccin, fenix, mcp-hub, ... }:
 
 let
   user = "andreym";
   xdg_configHome  = "/home/${user}/.config";
   xdg_wallpaperHome = "/home/${user}/.wallpapers";
-  shared-programs = import ../shared/home-manager.nix { inherit config configDir pkgs lib; };
+  shared-programs = import ../shared/home-manager.nix { inherit config configDir pkgs lib fenix; };
   shared-files = import ../shared/files.nix { inherit config configDir pkgs; };
 
   dotfiles = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/config";
@@ -23,7 +23,7 @@ in
     enableNixpkgsReleaseCheck = false;
     username = "${user}";
     homeDirectory = "/home/${user}";
-    packages = pkgs.callPackage ./packages.nix { };
+    packages = pkgs.callPackage ./packages.nix { inherit mcp-hub; };
     file = shared-files // import ./files.nix { inherit config user configDir pkgs ; };
     stateVersion = "21.05";
     pointerCursor = {
@@ -201,16 +201,15 @@ in
       # shellAliases = shellAliases;
     };
 
-    # vscode = {
-    #   enable = true;
-    #   package = pkgs.code-cursor;  # Use Cursor AI instead of VS Code
-    #   # Set Catppuccin as your default theme
-    #   userSettings = {
-    #     "workbench.colorTheme" = "Catppuccin Mocha";  # Or any other flavor: Latte, Frappé, Macchiato
-    #   };
-    # };
+    vscode = {
+      enable = true;
+      package = pkgs.code-cursor;  # Use Cursor AI instead of VS Code
+      # Set Catppuccin as your default theme
+      userSettings = {
+        "workbench.colorTheme" = "Catppuccin Mocha";  # Or any other flavor: Latte, Frappé, Macchiato
+      };
+    };
   };
-
 
   # This installs my GPG signing keys for Github
   systemd.user.services.gpg-import-keys = {

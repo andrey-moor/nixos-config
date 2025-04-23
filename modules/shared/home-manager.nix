@@ -1,16 +1,16 @@
-{ config, pkgs, lib, configDir, ... }:
+{ config, pkgs, lib, configDir, fenix, ... }:
 
 let name = "Andrey Moor";
     user = "andreym";
     email = "moor.andrey@gmail.com"; 
-    # rustToolchain = pkgs.fenix.complete.withComponents [
-    #   "cargo"
-    #   "clippy"
-    #   "rust-src"
-    #   "rustc"
-    #   "rustfmt"
-    #   "rust-analyzer"
-    # ];
+    rustToolchain = fenix.packages.${pkgs.system}.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+      "rust-analyzer"
+    ];
 in
 {
   direnv = {
@@ -81,7 +81,7 @@ in
       pkgs.ruff
       pkgs.isort
 
-      # rustToolchain
+      rustToolchain
     ];
   };
 

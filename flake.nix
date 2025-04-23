@@ -32,8 +32,9 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mcp-hub.url = "github:ravitemer/mcp-hub";
   };
-  outputs = { self, fenix, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko, agenix, catppuccin } @inputs:
+  outputs = { self, fenix, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko, agenix, catppuccin, mcp-hub } @inputs:
     let
       user = "andreym";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -113,6 +114,7 @@
           ];
         }
       );
+      packages.aarch64-linux.default = fenix.packages.aarch64-linux.minimal.toolchain;
       nixosConfigurations = nixpkgs.lib.genAttrs linuxSystems (system:
         nixpkgs.lib.nixosSystem {
           inherit system;
@@ -127,7 +129,9 @@
                 users.${user} = import ./modules/nixos/home-manager.nix;
                 extraSpecialArgs = { 
                   inherit configDir; 
-                  catppuccin = inputs.catppuccin; 
+                  catppuccin = inputs.catppuccin;
+                  fenix = inputs.fenix;
+                  mcp-hub = inputs.mcp-hub;
                 };
               };
             }
